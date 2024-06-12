@@ -1,17 +1,25 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { Tab1Component } from './tab1/tab1.component';
-import { Tab2Component } from './tab2/tab2.component';
-import { Tab3Component } from './tab3/tab3.component';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { BannerComponent } from '../../../component/banner/banner.component';
+import { ProductService } from '../../../service/Product.service';
+import { NgFor } from '@angular/common';
+import { Iproduct } from '../../../interface/Iproduct';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [Tab1Component,Tab2Component,Tab3Component,RouterLink,BannerComponent,RouterOutlet],
+  imports: [RouterLink,BannerComponent,NgFor],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-
+  viewService = inject(ProductService)
+  product:Iproduct[]=[]
+  ngOnInit(){
+    this.viewService.GetAll().subscribe({
+      next:(data)=>{
+        this.product = data
+      }
+    })
+  }
 }

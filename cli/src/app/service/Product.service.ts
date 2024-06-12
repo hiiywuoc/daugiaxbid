@@ -1,27 +1,28 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Addform, Bienso } from '../interface/Bienso';
+import { Injectable, inject } from '@angular/core';
+import { Iproduct, ProductForm } from '../interface/Iproduct';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(public http: HttpClient) { }
+
   url = 'http://localhost:3000/products'
+  http = inject(HttpClient)
   GetAll() {
-    return this.http.get<Bienso[]>(`${this.url}`)
+    return this.http.get<Iproduct[]>(`${this.url}`)
   }
   Delete(id: string) {
-    return this.http.delete<Bienso>(`${this.url}/${id}`)
+    return this.http.delete<Iproduct>(`${this.url}/${id}`)
   }
-  Create(data: Addform) {
-    return this.http.post<Bienso>(`${this.url}`, data)
+  createProduct(data: ProductForm) {
+    return this.http.post(this.url, data);
   }
-  View(id: string) {
-    return this.http.get<Bienso>(`${this.url}/${id}`)
+  getProductDetail(id: string) {
+    return this.http.get<Iproduct>(`${this.url}/${id}`)
   }
-  Edit(id: string, data: Addform) {
-    return this.http.put<Bienso>(`${this.url}/${id}`, data)
+  Edit(id: string, data: ProductForm) {
+    return this.http.put<Iproduct>(`${this.url}/${id}`, data)
   }
 }

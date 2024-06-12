@@ -1,0 +1,22 @@
+<form [formGroup]="AddCategory" (ngSubmit)="onSubmit()">
+    <div>
+        <label class="" for="Title">Name Category</label>
+        <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Name" type="text" id="name"
+            formControlName="name" />
+        <div *ngIf="AddCategory.controls['name'].errors?.['required'] && AddCategory.controls['name'].touched"
+            class="text-red-600">
+            Name Không Được Bỏ Trống
+        </div>
+    </div>
+    <div class="mt-4">
+        <label class="" for="message">DesCription</label>
+        <textarea class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Message" rows="8" id="message"
+            formControlName="description"></textarea>
+    </div>
+    <div class="mt-4">
+        <button type="submit" [disabled]="AddCategory.invalid"
+            class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">
+            Create Category
+        </button>
+    </div>
+</form>

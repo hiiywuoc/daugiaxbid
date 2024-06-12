@@ -1,126 +1,78 @@
-<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-lg">
-        <h1 class="text-center text-2xl mb-4 font-bold text-indigo-600 sm:text-3xl">Sửa Sản Phẩm Đấu Giá</h1>
-        <form action="#" novalidate [formGroup]="AddForm" class="space-y-4" (ngSubmit)="handSubmit()">
-            <div>
-                <label class="" for="name">Biển Số</label>
-                <input formControlName="bienso" class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                    placeholder="Biển Số" type="text" id="" />
-                <div *ngIf="AddForm.controls['bienso'].errors?.['required'] && AddForm.controls['bienso'].touched "
-                    class="text-red-600">
-                    Biển Số Không Được Bỏ Trống
-                </div>
-                <div *ngIf="AddForm.controls['bienso'].errors?.['minlength'] && AddForm.controls['bienso'].touched "
-                    class="text-red-600">
-                    Biển Số Không Được Ít Hơn 9 Ký Tự
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+<p-toast position="top-right"></p-toast>
+<section class="bg-gray-100">
+    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+            <form class="space-y-4" [formGroup]="AddFomr" (ngSubmit)="onSubmit()">
                 <div>
-                    <label class="" for="email">Giá</label>
-                    <input formControlName="gia" class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Giá"
-                        type="number" id="email" />
-                    <div *ngIf="AddForm.controls['gia'].errors?.['required'] && AddForm.controls['gia'].touched "
-                        class="text-red-600">
-                        Giá Không Được Bỏ Trống
-                    </div>
-                    <div *ngIf="AddForm.controls['gia'].errors?.['min'] && AddForm.controls['gia'].touched "
-                        class="text-red-600">
-                        Giá Không Được Nhỏ Hơn 0
-                    </div>
+                    <label class="" for="Title">Title</label>
+                    <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Name" type="text"
+                        id="name" formControlName="title" />
                 </div>
-
-                <div>
-                    <label class="" for="phone">Tỉnh, Thành Phố</label>
-                    <select id="countries" formControlName="tinh"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
-                    </select>
-                    <div *ngIf="AddForm.controls['tinh'].errors?.['required'] && AddForm.controls['tinh'].touched "
-                        class="text-red-600">
-                        Vui Lòng Chọn Tỉnh, Thành Phố
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <div>
+                        <label class="" for="email">Price</label>
+                        <input class="w-full rounded-lg  border border-gray-300 p-3 text-sm" placeholder=" Price"
+                            type="" id="price" formControlName="price" />
+                    </div>
+                    <div>
+                        <label>Category</label>
+                        <select formControlName="category" id="countries"
+                            class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="">Choose a country</option>
+                            @for (c of category; track c._id) {
+                            <option value="{{c._id}}">{{c.name}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <label class="" for="Image">Image</label>
+                        <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder=" Image" type="text"
+                            id="Image" formControlName="image" />
                     </div>
                 </div>
-            </div>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
                 <div>
-                    <label class="" for="phone">Loại Xe</label>
-                    <select id="countries" formControlName="loaixe"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
-                    </select>
-                    <div *ngIf="AddForm.controls['loaixe'].errors?.['required'] && AddForm.controls['loaixe'].touched "
-                        class="text-red-600">
-                        Vui Lòng Chọn Loại Xe
-                    </div>
+                    <label class="" for="message">DesCription</label>
+                    <textarea class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Message" rows="8"
+                        id="message" formControlName="description"></textarea>
                 </div>
-
-                <div>
-                    <label class="" for="phone">Loại Biển</label>
-                    <select id="countries" formControlName="loaibien"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Chọn Loại Biển</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
-                    </select>
-                    <div *ngIf="AddForm.controls['loaibien'].errors?.['required'] && AddForm.controls['loaibien'].touched "
-                        class="text-red-600">
-                        Vui Lòng Chọn Loại Biển
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-                <div>
-                    <label class="" for="phone">Giờ Bắt Đầu</label>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div class="relative">
-                        <input type="time" id="start-time" formControlName="startAt"
-                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="00:00" />
-                        <div *ngIf="AddForm.controls['startAt'].errors?.['required'] && AddForm.controls['startAt'].touched "
-                            class="text-red-600">
-                            Vui Lòng Chọn Giờ Bắt Đầu
+                        <label class="" for="message">StartAt</label>
+                        <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            </svg>
                         </div>
+                        <input type="datetime-local" formControlName="startAt" id="time"
+                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            min="09:00" max="18:00" value="00:00" required />
+                    </div>
+                    <div>
+                        <label>EndAt</label>
+                        <select formControlName="bidTime" id="countries"
+                            class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="">Choose a country</option>
+                            <option value="15">15p</option>
+                        </select>
                     </div>
                 </div>
-                <div>
-                    <label class="" for="phone">Giờ Kết Thúc</label>
-                    <div class="relative">
-                        <input type="time" id="end-time" formControlName="endAt"
-                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="00:00" />
-                        <div *ngIf="AddForm.controls['endAt'].errors?.['required'] && AddForm.controls['endAt'].touched "
-                            class="text-red-600">
-                            Vui Lòng Chọn Giờ Kết Thúc
-                        </div>
+                <label for="Option1" class="flex cursor-pointer items-start gap-4">
+                    <div class="flex items-center">
+                        &#8203;
+                        <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1"
+                            formControlName="isShow" />
                     </div>
+                    <div>
+                        <strong class="font-medium text-gray-900"> Show Products </strong>
+                    </div>
+                </label>
+                <div class="mt-4">
+                    <button type="submit"
+                        class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">
+                        Send Enquiry
+                    </button>
                 </div>
-
-            </div>
-
-            <div>
-                <label class="sr-only" for="message">Message</label>
-
-                <textarea class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Message" rows="8"
-                    id="message"></textarea>
-            </div>
-
-            <div class="mt-4">
-                <button type="submit" [disabled]="AddForm.invalid"
-                    class="inline-block w-full float-right rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto">
-                    Sửa Sản Phẩm
-                </button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</section>

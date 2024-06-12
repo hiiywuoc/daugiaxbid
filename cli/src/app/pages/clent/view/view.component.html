@@ -1,66 +1,33 @@
 
-<nav aria-label="Breadcrumb" >
-    <ol class="flex items-center gap-1 text-sm ml-7 mb-4 mt-6">
-        <li>
-            <a [routerLink]="['']" class="block transition hover:text-gray-700 text-gray-400">
-                <span class="sr-only"> Home </span>
-
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-            </a>
-        </li>
-
-        <li class="rtl:rotate-180 text-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clip-rule="evenodd" />
-            </svg>
-        </li>
-
-        <li>
-            <a class="block transition  hover:text-gray-700 text-gray-900"> Tài Sản Đấu Giá </a>
-        </li>
-    </ol>
-</nav>
-<h1 class="ml-6 mb-3 text-3xl">Biển Số</h1>
-<section class="overflow-hidden rounded-lg shadow-2xl md:grid md:grid-cols-3">
-    <div class="h-32 w-full object-cover md:h-full text-center text-8xl text-gray-400">
-        {{product.bienso}}
+<h1 class="ml-6 mb-3 text-3xl text-green-500">Sản Phẩm</h1>
+<div class="md:flex  2xl:px-20 md:px-6 px-4" >
+  <div class="xl:w-3/4 lg:w-2/5 w-84 md:block hidden border rounded-lg p-5 bg-white" *ngIf="product">
+    <img class="w-full" alt="image of a girl posing" [src]="product.image" width="50px" />
+  </div>
+  <div class="xl:w-3/4 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6 border rounded-lg p-5 bg-blue-200" *ngIf="product">
+    <div class="border-b border-gray-200 pb-6">
+      <p class="text-sm leading-none text-gray-600">{{product.category}}</p>
+      <h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800  mt-2">{{product.title}}</h1>
     </div>
-    <div class="flow-root  rounded-lg border border-gray-100 py-3 shadow-sm">
-        <dl class="-my-3 divide-y divide-gray-100 text-sm">
-          <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-            <dt class="font-medium text-gray-900">Title</dt>
-            <dd class="text-gray-700 sm:col-span-2">Mr</dd>
-          </div>
-      
-          <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-            <dt class="font-medium text-gray-900">Name</dt>
-            <dd class="text-gray-700 sm:col-span-2">John Frusciante</dd>
-          </div>
-      
-          <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-            <dt class="font-medium text-gray-900">Occupation</dt>
-            <dd class="text-gray-700 sm:col-span-2">Guitarist</dd>
-          </div>
-      
-          <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-            <dt class="font-medium text-gray-900">Salary</dt>
-            <dd class="text-gray-700 sm:col-span-2">$1,000,000+</dd>
-          </div>
-      
-          <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-            <dt class="font-medium text-gray-900">Bio</dt>
-            <dd class="text-gray-700 sm:col-span-2">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis debitis explicabo
-              doloremque impedit nesciunt dolorem facere, dolor quasi veritatis quia fugit aperiam
-              aspernatur neque molestiae labore aliquam soluta architecto?
-            </dd>
-          </div>
-        </dl>
+    <div class="py-4 border-b border-gray-200 flex items-center justify-between">
+      <p class="text-base leading-4 text-gray-800 ">Price</p>
+      <div class="flex items-center justify-center">
+        <p class="text-sm leading-none text-gray-600  mr-3">{{product.price}}</p>
       </div>
-</section>
+    </div>
+
+    <div>
+      <p class="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600  mt-7">{{product.description}}.</p>
+      <p class="text-base leading-4 mt-7 text-gray-600 ">Product Code: {{product._id}}</p>
+      <p class="text-base leading-4 mt-4 text-gray-600 ">Start Time: {{product.startAt}}</p>
+      <p class="text-base leading-4 mt-4 text-gray-600 ">End Time: {{product.endAt}}</p>
+      <!-- <p class="text-base leading-4 mt-4 text-gray-600 ">Depth: 5.1 inches</p> -->
+      <p class="md:w-96 text-base leading-normal text-gray-600  mt-4">Comment: The picture matches the comments</p>
+    </div>
+    <button
+    [routerLink]="['/phongdaugia',product._id]"
+      class=" dark:text-gray-900:bg-gray-100 mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700">
+      Đấu Giá
+    </button>
+  </div>
+</div>

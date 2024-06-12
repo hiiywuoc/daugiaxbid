@@ -1,1 +1,48 @@
-<p>login works!</p>
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-lg text-center">
+        <h1 class="text-2xl font-bold sm:text-3xl">Đăng Nhập!</h1>
+    </div>
+    <form action="#" class="mx-auto mb-0 mt-8 max-w-md space-y-4" [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="email" class="">Email</label>
+            <div class="relative">
+                <input type="text" formControlName="email"
+                    class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Nhập email" />
+                <div class="text-red-600"
+                    *ngIf="LoginForm.controls['email'].errors?.['required'] && LoginForm.controls['email'].touched">
+                    Email Không Bỏ Trống
+                </div>
+                <div class="text-red-600"
+                    *ngIf="LoginForm.controls['email'].errors?.['email'] && LoginForm.controls['email'].touched">
+                    Email Không Đúng Định Dạng
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="password" class="">Mật Khẩu</label>
+
+            <div class="relative">
+                <input type="password" formControlName="password"
+                    class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm" placeholder="Nhập Mật Khẩu" />
+                <div class="text-red-600"
+                    *ngIf="LoginForm.controls['password'].errors?.['required'] && LoginForm.controls['password'].touched">
+                    Mật Khẩu Không Bỏ Trống
+                </div>
+                <div class="text-red-600"
+                    *ngIf="LoginForm.controls['password'].errors?.['minlength'] && LoginForm.controls['password'].touched">
+                    Mật Khẩu Không Ít Hơn 6 Ký Tự
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <p class="text-sm text-gray-500">
+                Bạn Không Có Tài Khoản?
+                <a class="underline" [routerLink]="['/register']">Đăng Ký</a>
+            </p>
+            <button  [disabled]="LoginForm.invalid" type="submit" class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
+                Đăng Nhập
+            </button>
+        </div>
+    </form>
+</div>

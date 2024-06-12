@@ -8,11 +8,11 @@
         </h2>
 
         <p class="mt-6 max-w-lg leading-relaxed text-black text-3xl">
-          Đấu giá biển số xe Ô tô
+          Đấu giá sản phẩm
         </p>
       </div>
 
-      <a href="#"
+      <a
         class="mt-6 inline-flex shrink-0 items-center gap-2 rounded-full border border-green-600 px-5 py-3 text-green-600 transition hover:bg-green-600 hover:text-white md:mt-0">
         <span class="font-medium"> Xem Toàn Bộ </span>
         <svg xmlns="http://www.w3.org/2000/svg" class="size-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24"
@@ -21,41 +21,66 @@
         </svg>
       </a>
     </div>
-    <div class="mt-4 border-b  border-gray-200 dark:border-gray-700">
-      <ul class="flex flex-wrap -mb-px text-xs sm:text-lg font-medium text-center" id="default-tab"
-        data-tabs-toggle="#default-tab-content" role="tablist">
-        <li class="me-2" role="presentation">
-          <button [routerLink]="['']" class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
-            data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Danh Sách
-            Biển Số</button>
-        </li>
-        <li class="me-2" role="presentation">
-          <button [routerLink]="['/tab2']"
-            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-            id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard"
-            aria-selected="false">Danh Sách Chính Thức</button>
-        </li>
-        <li class="me-2" role="presentation">
-          <button [routerLink]="['/tab3']"
-            class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-            id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings"
-            aria-selected="false">Kết Quả Đấu Giá</button>
-        </li>
-      </ul>
+    <div class="mt-5">
+      <a class="shrink-0 border-b-2 border-sky-500 px-1 text-xl  font-medium text-sky-600" aria-current="page">
+        Notifications
+      </a>
     </div>
-    <div id="default-tab-content">
-      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
-        aria-labelledby="profile-tab">
-        <router-outlet></router-outlet>
+    <div>
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-7">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Title
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Price
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Description
+              </th>
+              <th scope="col" class="px-6 py-3">
+              Image
+              </th>
+              <th scope="col" class="px-6 py-3">
+               Category
+              </th>
+              <th scope="col" class="">
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of product"
+              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{p.title}}
+              </th>
+              <td class="px-6 py-4">
+                {{p.price}}
+              </td>
+              <td class="px-6 py-4">
+                {{p.description}}
+              </td>
+              <td class="px-6 py-4">
+                {{p.image}}
+              </td>
+              <td class="px-6 py-4">
+                {{p.category}}
+              </td>
+              <td class="px-1 py-4">
+                <button>
+                  <a [routerLink]="['/phongdaugia',p._id]" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Đấu Giá</a>
+                </button>
+                <button>
+                  <a [routerLink]="['/view',p._id]" class="font-medium ml-4 text-blue-600 dark:text-blue-500 hover:underline">Chi Tiết</a>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
-        aria-labelledby="dashboard-tab">
-        <app-tab2></app-tab2>
-      </div>
-      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel"
-        aria-labelledby="settings-tab">
-        <app-tab3></app-tab3>
-      </div>
+
     </div>
   </div>
 </section>
